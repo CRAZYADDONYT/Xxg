@@ -137,7 +137,7 @@ app.get('/api/videos', (req, res) => {
   return res.json(rows.map((r) => ({ ...r, time_ago: timeAgo(r.created_at) })));
 });
 
-app.post('/api/videos/upload', upload.fields([{ name: 'videoFile', maxCount: 1 }, { name: 'thumbnailFile', maxCount: 1 }]), (req, res) => {
+app.post('/api/videos/upload', upload.fields([{ name: 'videoFile', maxCount: 1 }, { name: 'thumbnailFile', maxCount: 1 }]), async (req, res) => {
   try {
     const { titleInput, descriptionInput, categoryInput } = req.body;
     const video = req.files?.videoFile?.[0];
